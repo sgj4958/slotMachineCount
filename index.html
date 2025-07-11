@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <script src="slotMachineCount.js"></script>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .body {
+        border: 1px solid #ddd;
+        margin: 5px;
+        padding: 5px;
+        overflow: hidden;
+        width: 90vw;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    section {
+        --main-color: rgb(207, 143, 91);
+        color: #555;
+        font-size: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        &.finale {animation: scale .3s 2;}
+
+        h1 {
+            font-size: 0.7em;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            color: var(--main-color);
+        }
+        h2 {
+            letter-spacing: -3px;
+            font-weight: 900;
+            font-size: 1.6em;
+            span {
+                font-size: 1.2em;
+                color: var(--main-color);
+            }
+
+            &:first-of-type {margin-bottom: -20px;}
+
+            &:last-of-type {margin-bottom: 20px;}
+        }
+        .slotWrap {
+            display: flex;
+            align-items: bottom;
+
+            .slotMachine {
+                font-size: 3em;
+                font-weight: 900;
+                color: var(--main-color);
+                cursor: pointer;
+
+                .wrap {
+                    gap: 5px;
+                    
+                    .unitWrap {
+                        height: 120px !important;
+
+                        div {translate: 0 -10px;}
+                    }
+                }
+
+                &+span {
+                    color: var(--main-color);
+                    font-size: 1.6em;
+                    font-weight: bold;
+                    align-self: end;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        hr {
+            width: 100%;
+            opacity: .3;
+            margin-top: 15px;
+        }
+        h5 {
+            font-size: 0.7em;
+            font-weight: 400;
+            text-align: center;
+            margin: 20px 0;
+        }
+        h3 {
+            font-size: 0.5em;
+            color: #555;
+            opacity: .7;
+            letter-spacing: -1px;
+            font-weight: 300;
+        }
+    }
+
+    @keyframes scale {
+        50% {transform: scale(.99);}
+        100% {transform: scale(1);}
+    }
+
+  </style>
+</head>
+<body>
+    <div class="body">
+        <section>
+            <h1>쇼핑몰 어쩌고</h1>
+            <h2>상품 어쩌고</h2>
+            <h2>누적 판매량</h2>
+            <div class="slotWrap">
+                <div class="slotMachine">1234567</div>
+                <span>개</span>
+            </div>
+            <h2>돌파<i>!</i></h2>
+            <h5>감사 어쩌고 <br>앞으로도 어쩌고</h5>
+            <hr>
+            <h3>2025년 07월 기준</h3>
+        </section>
+    </div>
+</body>
+<script>
+    const section = document.querySelector("section")
+    section.addEventListener("animationend", () => section.classList.remove("finale"))
+    const finale = () => section.classList.add("finale")
+    슬롯머신(".slotMachine", {duration: 100, loopDelay: 2000, callback: finale})
+</script>
+</html>
